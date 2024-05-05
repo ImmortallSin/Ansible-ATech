@@ -1,0 +1,17 @@
+---
+- name: install/start httpd #The name of our playbook
+  hosts: all #Define clients you want to run this playbook for
+  become: true #Sudo privliges wheather you want it enable or not
+  tasks:
+
+  - name: install httpd
+    package:                #This is the module, it's needed depending on the task we want to run
+      name: "{{ apache_package }}"       #Using the yum module this is the name of the package we are installing. Defining the package name
+      state: absent         #Defining the version we are installing, either present or latest. Latest will update it if needed. Absent -remove it from the machine itself if its already there.
+
+#    - name: start/enable
+#     service:
+#      name: "{{ apache_service }}"
+#     state: started
+#    enabled: true
+      
